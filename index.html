@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Testing AngularJS with Jasmine</title>
+
+		<meta name="description" content="Jasmine is a behavior-driven development framework for testing JavaScript code.">
+		<meta name="author" content="Holden Profit">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<!-- Intro Slides -->
+				<section>
+					<h1>Testing AngularJS with Jasmine</h1>
+					<h3>A brief introduction</h3>
+					<p>
+						<small>Created by <a href="https://github.com/Acrylico">Holden Profit</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>What is Jasmine?</h2>
+					<p>
+						"Jasmine is a behavior-driven development framework for testing JavaScript code." 
+						You write your test in an easy to read JavaScript file, hit run, and watch everything fail!
+					</p>
+				</section>
+
+				<!-- Set up slides -->
+				<section>
+					<section>
+						<h2>So how do I get Jasmine?</h2>
+						<p>
+							By adding it to your bower dependencies!
+						</p>
+					</section>
+					<section>
+						<h2>bower.json</h2>
+						<p>
+							<pre><code data-trim contenteditable>
+{
+  "name": "myApp",
+  "version": "0.1.0",
+  "dependencies": {
+    "jasmine":"latest"
+  }
+}
+							</code></pre>
+							
+							And then simply run "bower install" from your gitbash line.
+						</p>
+					</section>
+				</section>
+				
+				<!-- Simple test slides -->
+				<section>
+					<section>
+						<h2>What to test</h2>
+						<p>
+							So let's assume you have an Angular controller as follows:
+							
+							<pre><code data-trim contenteditable>
+myApp.controller('myController', function ($scope) {
+	$scope.person = {
+		name: "",
+		age: 0,
+		gender: ""
+	};
+});
+							</code></pre>
+						</p>
+					</section>
+					
+					<section>
+						<h2>To Begin</h2>
+						<p>You'll need some basic setup for your Angular Module. We'll create a file called "myControllerSpec.js"</p>
+					<pre><code data-trim contenteditable>
+describe("myController Tests", function () {
+	var scope, controller;
+});
+					</code></pre>
+					</section>
+					
+					<section>
+						<h2>Next, a basic test!</h2>
+						<p>
+							<pre><code data-trim contenteditable>
+describe("myController Tests", function () {
+	var scope, controller;
+
+    it("should have a person object", function () {
+        expect(scope.person).toBeDefined();
+        expect(scope.person).toEqual({
+            name: "",
+            age: 0,
+            gender: ""
+		});
+    });
+	
+});	
+							</code></pre>
+						</p>
+					</section>
+					
+					<section>
+						<h2>Oh boy! Another bit of setup!</h2>
+						<p>The prior test, however, will fail without telling Jasmine what controller you're actually testing!</p>
+						<pre><code data-trim contenteditable>
+describe("myController Tests", function () {
+	var scope, controller;
+
+	beforeEach(module("myApp")); // Creates the module "myApp"
+
+	beforeEach(inject(function ($rootScope, $controller) {
+		scope = $rootScope.$new(); // Creating a new scope for our controller
+		controller = $controller; // The service that instantiates controllers
+		// Creates a "myController" controller object
+		controller("myController", {$scope: scope}); 
+	}));
+
+	afterEach(function () { });
+	. . .
+});	
+						</code></pre>
+						<aside class="notes">
+							beforeEach() and afterEach() are setup and teardown functions for your testing, meant to keep things DRY
+						</aside>
+					</section>
+				</section>
+
+				<!-- Simple function test slides -->
+				<section>
+					<section>
+						<h2>That's nice...</h2>
+						<p>
+							but I want to test some functionality!
+						</p>
+					</section>
+					
+					<section>
+						<p>
+							So let's expand the controller a bit...
+						</p>
+					
+						<pre><code data-trim contenteditable>
+myApp.controller('myController', function ($scope) {
+	$scope.person = {
+		name: "",
+		age: 0,
+		gender: ""
+	};
+	
+	// Will take some parameters to initialize our person object with
+	$scope.initPerson = function (name, age, gender) {
+	
+	};
+});
+						</code></pre>
+					</section>
+					
+					<section>
+						<h2>So we write the test first...</h2>
+						<p>
+							<pre><code data-trim contenteditable>
+describe("myController Tests", function () {
+	. . .
+	
+    it("should initialize the person object when initPerson() is called", function () {
+        var name = "Guy Gardener", age = 30, gender = "male";
+		
+		scope.initPerson(name, age, gender);
+
+        expect(scope.person).toEqual({
+            name: name,
+            age: age,
+            gender: gender
+		});
+    });
+	
+});	
+							</code></pre>
+						</p>
+					</section>
+					
+					<section>
+						<h2>Then write the function to pass!</h2>
+						<p>
+							<pre><code data-trim contenteditable>
+myApp.controller('myController', function ($scope) {
+	$scope.person = {. . .};
+	
+	$scope.initPerson = function (name, age, gender) {
+		$scope.person.name = name;
+		$scope.person.age = age;
+		$scope.person.gender = gender;
+	};
+});
+							</code></pre>
+						</p>
+					</section>
+				</section>
+
+				<!-- AJAX function test slides -->
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
