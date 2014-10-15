@@ -40,199 +40,242 @@
 
 		<div class="reveal">
 			<div class="slides">
-				<!-- Intro Slides -->
+				<!-- Intro -->
 				<section>
-					<h1>Testing AngularJS with Jasmine</h1>
-					<h3>A brief introduction</h3>
+					<h1>Jasmine</h1>
+					<h4>Javascript testing made easy</h4>
 					<p>
 						<small>Created by <a href="https://github.com/Acrylico">Holden Profit</a></small>
 					</p>
 				</section>
 
-				<section>
-					<h2>What is Jasmine?</h2>
-					<p>
-						"Jasmine is a behavior-driven development framework for testing JavaScript code." 
-						You write your test in an easy to read JavaScript file, hit run, and watch everything fail!
-					</p>
-				</section>
+                <!-- What is Jasmine? -->
+                <section>
+                    <h2>What is <a href="http://jasmine.github.io/">Jasmine?</a></h2>
+                    <h3>A BDD framework for testing your Javascript</h3>
+                    <p>
+                        Completely independent, doesn't require a DOM, and has clean & clear syntax for testing all that JS code you've written.
+                    </p>
+                </section>
 
-				<!-- Set up slides -->
-				<section>
-					<section>
-						<h2>So how do I get Jasmine?</h2>
-						<p>
-							By adding it to your bower dependencies!
-						</p>
-					</section>
-					<section>
-						<h2>bower.json</h2>
-						<p>
-							<pre><code data-trim contenteditable>
-{
-  "name": "myApp",
-  "version": "0.1.0",
-  "dependencies": {
-    "jasmine":"latest"
-  }
-}
-							</code></pre>
-							
-							And then simply run "bower install" from your gitbash line.
-						</p>
-					</section>
-				</section>
-				
-				<!-- Simple test slides -->
-				<section>
-					<section>
-						<h2>What to test</h2>
-						<p>
-							So let's assume you have an Angular controller as follows:
-							
-							<pre><code data-trim contenteditable>
-myApp.controller('myController', function ($scope) {
-	$scope.person = {
-		name: "",
-		age: 0,
-		gender: ""
-	};
-});
-							</code></pre>
-						</p>
-					</section>
-					
-					<section>
-						<h2>To Begin</h2>
-						<p>You'll need some basic setup for your Angular Module. We'll create a file called "myControllerSpec.js"</p>
-					<pre><code data-trim contenteditable>
-describe("myController Tests", function () {
-	var scope, controller;
-});
-					</code></pre>
-					</section>
-					
-					<section>
-						<h2>Next, a basic test!</h2>
-						<p>
-							<pre><code data-trim contenteditable>
-describe("myController Tests", function () {
-	var scope, controller;
+                <!-- SpecRunner -->
+                <section>
+                    <h2>View Tests</h2>
+                    <h3>Set up your SpecRunner.html</h3>
+                    <p>
+                        SpecRunner contains all the necessary libs and spec files for your tests to run and show up in your browser.
+                        <br/>
+                        A sample SpecRunner.html:
+                        <image src="image/specRunner.png" />
+                    </p>
+                </section>
 
-    it("should have a person object", function () {
-        expect(scope.person).toBeDefined();
-        expect(scope.person).toEqual({
-            name: "",
-            age: 0,
-            gender: ""
-		});
+                <!-- Ctrl Overview - Naked -->
+                <section>
+                    <h2>What to test</h2>
+                    <p>
+                        An example Angular controller, yet to be filled out:
+
+                        <pre><code data-trim contenteditable>
+myApp.controller('myController', function ($scope, $http) {
+    $scope.person = null;
+
+    $scope.initPerson = function (name, age, gender) { };
+
+    $scope.makeCall = function (person) { };
+});
+                        </code></pre>
+                    </p>
+                </section>
+
+                <!-- Ctrl Spec -->
+                <section>
+                    <h2>How to test</h2>
+                    <p>
+                        And here is our controller Spec file:
+                    </p>
+                    <pre><code data-trim contenteditable >
+// Describe what this spec file is testing
+describe("myController Tests", function () {
+    var scope, controller, httpBackend, http;
+
+    // Do some set up before each test is run
+    beforeEach(module("myApp")); // Creates the module "myApp"
+
+    beforeEach(inject(function ($rootScope, $controller, $httpBackend, $http) {
+        scope = $rootScope.$new(); // Creating a new scope for our controller
+        controller = $controller; // The service that instantiates controllers
+        httpBackend = $httpBackend;
+        http = $http;
+        controller("myController", {$scope: scope, $http: http}); // Creates a "myController" controller object
+        spyOn(window, 'alert');
+    }));
+
+    // Do some tear down after each test runs
+    afterEach(function () {
+        httpBackend.verifyNoOutstandingExpectation();
+        httpBackend.verifyNoOutstandingRequest();
+        window.alert.calls.reset();
     });
-	
-});	
-							</code></pre>
-						</p>
-					</section>
-					
-					<section>
-						<h2>Oh boy! Another bit of setup!</h2>
-						<p>The prior test, however, will fail without telling Jasmine what controller you're actually testing!</p>
-						<pre><code data-trim contenteditable>
-describe("myController Tests", function () {
-	var scope, controller;
 
-	beforeEach(module("myApp")); // Creates the module "myApp"
+    // Tell the test what it should be doing
+    it("should have a person object", function () {
+        // arrange
 
-	beforeEach(inject(function ($rootScope, $controller) {
-		scope = $rootScope.$new(); // Creating a new scope for our controller
-		controller = $controller; // The service that instantiates controllers
-		// Creates a "myController" controller object
-		controller("myController", {$scope: scope}); 
-	}));
+        // act
 
-	afterEach(function () { });
-	. . .
-});	
-						</code></pre>
-						<aside class="notes">
-							beforeEach() and afterEach() are setup and teardown functions for your testing, meant to keep things DRY
-						</aside>
-					</section>
-				</section>
+        // assert
+        expect(scope.person).toBeDefined();
+    });
 
-				<!-- Simple function test slides -->
-				<section>
-					<section>
-						<h2>That's nice...</h2>
-						<p>
-							but I want to test some functionality!
-						</p>
-					</section>
-					
-					<section>
-						<p>
-							So let's expand the controller a bit...
-						</p>
-					
-						<pre><code data-trim contenteditable>
-myApp.controller('myController', function ($scope) {
-	$scope.person = {
-		name: "",
-		age: 0,
-		gender: ""
-	};
-	
-	// Will take some parameters to initialize our person object with
-	$scope.initPerson = function (name, age, gender) {
-	
-	};
-});
-						</code></pre>
-					</section>
-					
-					<section>
-						<h2>So we write the test first...</h2>
-						<p>
-							<pre><code data-trim contenteditable>
-describe("myController Tests", function () {
-	. . .
-	
     it("should initialize the person object when initPerson() is called", function () {
+        // arrange
         var name = "Guy Gardener", age = 30, gender = "male";
-		
-		scope.initPerson(name, age, gender);
 
+        // act
+        scope.initPerson(name, age, gender);
+
+        // assert
         expect(scope.person).toEqual({
             name: name,
             age: age,
             gender: gender
-		});
+        });
     });
-	
-});	
-							</code></pre>
-						</p>
-					</section>
-					
-					<section>
-						<h2>Then write the function to pass!</h2>
-						<p>
-							<pre><code data-trim contenteditable>
-myApp.controller('myController', function ($scope) {
-	$scope.person = {. . .};
-	
-	$scope.initPerson = function (name, age, gender) {
-		$scope.person.name = name;
-		$scope.person.age = age;
-		$scope.person.gender = gender;
-	};
+
+    it("should log success when a makeCall receives a 200", function () {
+        // arrange
+        var person = {
+            name: "Guy Gardener",
+            age: 30,
+            gender: "male"
+        };
+
+        httpBackend.expectPOST("/api/person").respond(200, {result: "success"});
+        spyOn(console, 'log').and.callFake(function(str){
+            expect(str).toBe("Success! :D");
+        });
+
+        // act
+        scope.makeCall(person);
+
+        // assert
+        httpBackend.flush();
+        expect(console.log.calls.count()).toEqual(1);
+    });
+
+    it("should log an error when a makeCall does not receive a 200", function () {
+        // arrange
+        var person = {
+            name: "Guy Gardener",
+            age: 30,
+            gender: "male"
+        };
+
+        httpBackend.expectPOST("/api/person").respond(500, {result: "error"});
+        spyOn(console, 'log').and.callFake(function(str){
+            expect(str).toBe("Failure! :(");
+        });
+
+        // act
+        scope.makeCall(person);
+
+        // assert
+        httpBackend.flush();
+        expect(console.log.calls.count()).toEqual(1);
+    });
 });
-							</code></pre>
-						</p>
-					</section>
-				</section>
+                        </code></pre>
+                </section>
 
-				<!-- AJAX function test slides -->
+                <!-- What is TDD? -->
+                <section>
+                    <h2>What is <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD?</a></h2>
+                    <h3>A different way of thinking!</h3>
+                    <p>
+                        With TDD, you write your test <b>FIRST</b> then write your code to pass the test with minimal code and effort put forth to do so.
+                    </p>
+                </section>
 
+                <!-- TDD personInit() - Ctrl -->
+                    <!-- TDD personInit() - spec -->
+                    <!-- TDD personInit() - fill in -->
+                <section>
+                    <!-- TDD personInit() - Ctrl -->
+                    <section>
+                        <h2>Let's try it out!</h2>
+                        <p>
+                            Given our controller's initPerson() function, lets write our test first, then complete the function to pass!
+                        </p>
+                        <pre><code data-trim contenteditable >
+myApp.controller('myController', function ($scope, $http) {
+    $scope.person = null;
+
+    $scope.initPerson = function (name, age, gender) { };
+});
+                        </code></pre>
+                    </section>
+
+                    <!-- TDD personInit() - spec -->
+                    <section>
+                        <h2>Recall our test</h2>
+                        <p>
+                            We have a test written for that!
+                        </p>
+                        <pre><code data-trim contenteditable >
+describe("myController Tests", function () {
+    . . .
+    it("should initialize the person object when initPerson() is called", function () {
+        // arrange
+        var name = "Guy Gardener", age = 30, gender = "male";
+
+        // act
+        scope.initPerson(name, age, gender);
+
+        // assert
+        expect(scope.person).toEqual({
+            name: name,
+            age: age,
+            gender: gender
+        });
+
+    });
+    . . .
+});
+                        </code></pre>
+                    </section>
+
+                    <!-- TDD personInit() - fill in -->
+                    <section>
+                        <h2>Write the test</h2>
+                        <p>
+                            Given our controller's initPerson() function, lets write our test first, then complete the function to pass!
+                        </p>
+                        <pre><code data-trim contenteditable >
+myApp.controller('myController', function ($scope, $http) {
+    $scope.person = null;
+
+    $scope.initPerson = function (name, age, gender) {
+        var person = {
+            name: name,
+            age: age,
+            gender: gender
+        };
+        $scope.person = person;
+    };
+});
+                        </code></pre>
+                    </section>
+                </section>
+
+                <!-- Thanks -->
+                <section>
+                    <h1>Thank you!</h1>
+                    <h4>Questions? Concerns?</h4>
+                    <p>
+                        <small>Feel free to contact me at: hprofit@icct.com</small>
+                    </p>
+                </section>
 			</div>
 
 		</div>
