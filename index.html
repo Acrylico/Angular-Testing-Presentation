@@ -42,33 +42,35 @@
 			<div class="slides">
 				<!-- Intro -->
 				<section>
-					<h1>Jasmine</h1>
+					<h1>AngularJS Testing with Jasmine</h1>
 					<h4>Javascript testing made easy</h4>
 					<p>
-						<small>Created by <a href="https://github.com/Acrylico">Holden Profit</a></small>
+						<small>Created by Holden Profit <br/>( <a href="https://github.com/Acrylico">https://github.com/Acrylico</a> )</small>
 					</p>
 				</section>
 
                 <!-- What is Jasmine? -->
                 <section>
-                    <h2>What is <a href="http://jasmine.github.io/">Jasmine?</a></h2>
+                    <h2>What is Jasmine?</h2>
                     <h3>A BDD framework for testing your Javascript</h3>
                     <p>
                         Completely independent, doesn't require a DOM, and has clean & clear syntax for testing all that JS code you've written.
                         <br/><br/>
-                        <small>Documentation on Jasmine can be found <a href="http://jasmine.github.io/">here</a>!</small>
+                        <small>Documentation on Jasmine can be found at <a href="http://jasmine.github.io/">http://jasmine.github.io</a> !</small>
                     </p>
                 </section>
 
                 <!-- SpecRunner -->
                 <section>
-                    <h2>View Tests</h2>
-                    <h3>Set up your SpecRunner.html</h3>
+                    <h2>How to View Tests</h2>
                     <p>
-                        SpecRunner contains all the necessary libs and spec files for your tests to run and show up in your browser.
-                        <br/>
-                        A sample SpecRunner.html:
-                        <image src="image/specRunner.png" />
+                        Everything in Jasmine starts with the SpecRunner.html file.<br/>
+                        It's within this file that you:
+                        <ul>
+                            <li>Tell Jasmine where your source code is</li>
+                            <li>Tell Jasmine where your tests are</li>
+                            <li>Include any additional dependencies for your code</li>
+                        </ul>
                     </p>
                 </section>
 
@@ -76,15 +78,13 @@
                 <section>
                     <h2>What to test</h2>
                     <p>
-                        An example Angular controller, yet to be filled out:
+                        An example Angular controller, yet to be implemented:
 
                         <pre><code data-trim contenteditable>
 myApp.controller('myController', function ($scope, $http) {
     $scope.person = null;
 
     $scope.initPerson = function (name, age, gender) { };
-
-    $scope.makeCall = function (person) { };
 });
                         </code></pre>
                     </p>
@@ -99,100 +99,22 @@ myApp.controller('myController', function ($scope, $http) {
                     <pre><code data-trim contenteditable >
 // Describe what this spec file is testing
 describe("myController Tests", function () {
-    var scope, controller, httpBackend, http;
+    var scope, controller;
 
-    // Do some set up before each test is run
     beforeEach(module("myApp")); // Creates the module "myApp"
 
-    beforeEach(inject(function ($rootScope, $controller, $httpBackend, $http) {
+    beforeEach(inject(function ($rootScope, $controller) {
         scope = $rootScope.$new(); // Creating a new scope for our controller
         controller = $controller; // The service that instantiates controllers
-        httpBackend = $httpBackend;
-        http = $http;
-        controller("myController", {$scope: scope, $http: http}); // Creates a "myController" controller object
-        spyOn(window, 'alert');
+        controller("myController", {$scope: scope}); // Creates our ctrl object
     }));
-
-    // Do some tear down after each test runs
-    afterEach(function () {
-        httpBackend.verifyNoOutstandingExpectation();
-        httpBackend.verifyNoOutstandingRequest();
-        window.alert.calls.reset();
-    });
-
-    // Tell the test what it should be doing
-    it("should have a person object", function () {
-        // arrange
-
-        // act
-
-        // assert
-        expect(scope.person).toBeDefined();
-    });
-
-    it("should initialize the person object when initPerson() is called", function () {
-        // arrange
-        var name = "Guy Gardener", age = 30, gender = "male";
-
-        // act
-        scope.initPerson(name, age, gender);
-
-        // assert
-        expect(scope.person).toEqual({
-            name: name,
-            age: age,
-            gender: gender
-        });
-    });
-
-    it("should log success when a makeCall receives a 200", function () {
-        // arrange
-        var person = {
-            name: "Guy Gardener",
-            age: 30,
-            gender: "male"
-        };
-
-        httpBackend.expectPOST("/api/person").respond(200, {result: "success"});
-        spyOn(console, 'log').and.callFake(function(str){
-            expect(str).toBe("Success! :D");
-        });
-
-        // act
-        scope.makeCall(person);
-
-        // assert
-        httpBackend.flush();
-        expect(console.log.calls.count()).toEqual(1);
-    });
-
-    it("should log an error when a makeCall does not receive a 200", function () {
-        // arrange
-        var person = {
-            name: "Guy Gardener",
-            age: 30,
-            gender: "male"
-        };
-
-        httpBackend.expectPOST("/api/person").respond(500, {result: "error"});
-        spyOn(console, 'log').and.callFake(function(str){
-            expect(str).toBe("Failure! :(");
-        });
-
-        // act
-        scope.makeCall(person);
-
-        // assert
-        httpBackend.flush();
-        expect(console.log.calls.count()).toEqual(1);
-    });
 });
                         </code></pre>
                 </section>
 
                 <!-- What is TDD? -->
                 <section>
-                    <h2>What is <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD?</a></h2>
+                    <h2>What is <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>?</h2>
                     <h3>A different way of thinking!</h3>
                     <p>
                         With TDD, you write your test <b>FIRST</b> then write your code to pass the test with minimal code and effort put forth to do so.
@@ -205,12 +127,12 @@ describe("myController Tests", function () {
                 <section>
                     <!-- TDD personInit() - Ctrl -->
                     <section>
-                        <h2>Let's try it out!</h2>
+                        <h2>Great, let's try it out!</h2>
                         <p>
                             Given our controller's initPerson() function, lets write our test first, then complete the function to pass!
                         </p>
                         <pre><code data-trim contenteditable >
-myApp.controller('myController', function ($scope, $http) {
+myApp.controller('myController', function ($scope) {
     $scope.person = null;
 
     $scope.initPerson = function (name, age, gender) { };
@@ -222,48 +144,42 @@ myApp.controller('myController', function ($scope, $http) {
                     <section>
                         <h2>Recall our test</h2>
                         <p>
-                            We have a test written for that!
+                            What should this function actually <i>do</i>?
                         </p>
                         <pre><code data-trim contenteditable >
 describe("myController Tests", function () {
     . . .
-    it("should initialize the person object when initPerson() is called", function () {
+    it("should fill the person field when initPerson() is called", function () {
         // arrange
         var name = "Guy Gardener", age = 30, gender = "male";
-
         // act
         scope.initPerson(name, age, gender);
-
         // assert
         expect(scope.person).toEqual({
             name: name,
             age: age,
             gender: gender
         });
-
     });
-    . . .
 });
                         </code></pre>
                     </section>
 
                     <!-- TDD personInit() - fill in -->
                     <section>
-                        <h2>Write the test</h2>
+                        <h2>Implement the function</h2>
                         <p>
-                            Given our controller's initPerson() function, lets write our test first, then complete the function to pass!
+                            Now that we know what the function needs to do, let's implement it!
                         </p>
                         <pre><code data-trim contenteditable >
-myApp.controller('myController', function ($scope, $http) {
+myApp.controller('myController', function ($scope) {
     $scope.person = null;
-
     $scope.initPerson = function (name, age, gender) {
-        var person = {
+        $scope.person = {
             name: name,
             age: age,
             gender: gender
         };
-        $scope.person = person;
     };
 });
                         </code></pre>
@@ -275,7 +191,8 @@ myApp.controller('myController', function ($scope, $http) {
                     <h1>Thank you!</h1>
                     <h4>Questions? Concerns?</h4>
                     <p>
-                        <small>Feel free to contact me at: hprofit@icct.com</small>
+                        <small>Feel free to contact me at: hprofit@icct.com <br/>
+                        Also look me up on github at <a href="https://github.com/Acrylico">https://github.com/Acrylico</a>!</small>
                     </p>
                 </section>
 			</div>
