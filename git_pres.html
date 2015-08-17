@@ -63,10 +63,10 @@
                 <img src="/image/Git-Logo.png" style="width:300px; height: 125px;"/>
                 </br>
                 A completely different type of VCS from the ones you're used to.
-                <ul>
-                    <li>(Almost) Everything is local</li>
-                    <li>Commits are snapshots (not differences)</li>
-                </ul>
+            <ul>
+                <li>(Almost) Everything is local</li>
+                <li>Commits are snapshots (not differences)</li>
+            </ul>
             </p>
         </section>
 
@@ -152,69 +152,101 @@
                 <p>
                     <small>* This is by no means comprehensive, please refer to the
                         sources slide for more detailed documentation. * </small>
-                    <ul>
-                        <li>git clone <b><i>[repository URL]</i></b></li>
-                        <small>
-                            <ul>
-                                <li>Copies the entire directory from the given <b><i>repository URL</i></b></li>
-                            </ul>
-                        </small>
-                        <li>git status</li>
-                        <small>
-                            <ul>
-                                <li>Provides a summary of what files have been modified, added, or deleted</li>
-                                <li>Files marked in red have not been added while files marked green have</li>
-                            </ul>
-                        </small>
-                        <li>git add <i>[-A/--all/. OR file/directory]</i></li>
-                        <small>
-                            <ul>
-                                <li>Stages the named file/directory (or all) for commit</li>
-                                <li>This means those files will be go into your next</li>
-                                <li>NOTE: You can use * for regex purposes</li>
-                            </ul>
-                        </small>
-                    </ul>
-                </p>
-            </section>
-            <section>
-                <p>
-                    <ul>
-                        <li>git commit <i>[-m "Commit message goes here."]</i></li>
-                        <small>
-                            <ul>
-                                <li>Commits all files that are currently staged to your local repo</li>
-                                <li>NOTE: This does NOT move them to the actual repo online!</li>
-                            </ul>
-                        </small>
-                        <li>git push <b><i>[remote] [branch]</i></b></li>
-                        <small>
-                            <ul>
-                                <li>Pushes your local repo up to the targeted <b><i>branch</i></b> belonging to the <b><i>remote</i></b></li>
-                            </ul>
-                        </small>
-                        <li>git reset <i>[--soft/--hard]</i><i>[paths]</i></li>
-                        <small>
-                            <ul>
-                                <li>UN-Stages the named file/directory (or all) from the staging area</li>
-                                <li><i>--soft</i> will merely undo any <i>git add</i> commands you have performed</li>
-                                <li><i>--hard</i> will undo <i>git add</i> AND discard all changes you've made</li>
-                            </ul>
-                        </small>
-                    </ul>
+                <ul>
+                    <li>git config --global user.name <b><i>"[name]"</i></b></li>
+                    <small>
+                        <ul>
+                            <li>This will set the <b><i>[name]</i></b> you want to associate to any commit actions you make</li>
+                        </ul>
+                    </small>
+                    <li>git config --global user.email <b><i>"[email]"</i></b></li>
+                    <small>
+                        <ul>
+                            <li>This will set the <b><i>[email]</i></b> you want to associate to any commit actions you make</li>
+                        </ul>
+                    </small>
+                    <li>git init <i>[project name]</i></li>
+                    <small>
+                        <ul>
+                            <li>Creates a new .git repository</li>
+                            <li><i>[project name]</i> will supply the repo with given name instead of the default</li>
+                        </ul>
+                    </small>
+                </ul>
                 </p>
             </section>
             <section>
                 <p>
                 <ul>
-                    <li>git branch <i>[--all/-a] [remote]</i></li>
+                    <li>git clone <b><i>[repository URL]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Copies the entire directory from the given <b><i>repository URL</i></b></li>
+                        </ul>
+                    </small>
+                    <li>git status</li>
+                    <small>
+                        <ul>
+                            <li>Provides a summary of what files have been modified, added, or deleted</li>
+                            <li>Files marked in red have not been added while files marked green have</li>
+                        </ul>
+                    </small>
+                    <li>git add <i>[-A/--all/. OR file/directory]</i></li>
+                    <small>
+                        <ul>
+                            <li>Stages the named file/directory (or all) for commit</li>
+                            <li>This means those files will be go into your next</li>
+                            <li>NOTE: You can use * for regex purposes</li>
+                        </ul>
+                    </small>
+                    <li>git commit <i>[-m "Commit message goes here."]</i></li>
+                    <small>
+                        <ul>
+                            <li>Commits all files that are currently staged to your local repo</li>
+                            <li>NOTE: This does NOT move them to the actual repo online!</li>
+                        </ul>
+                    </small>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p>
+                <ul>
+                    <li>git pull <b><i>[remote] [branch]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Pulls the changes from the given <b><i>[remote]'s [branch]</i></b> and auto merges them into the HEAD</li>
+                        </ul>
+                    </small>
+                    <li>git push <b><i>[remote] [branch]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Pushes your local repo up to the targeted <b><i>branch</i></b> belonging to the <b><i>remote</i></b></li>
+                        </ul>
+                    </small>
+                    <li>git reset <i>[--soft/--hard]</i><i>[paths]</i></li>
+                    <small>
+                        <ul>
+                            <li>UN-Stages the named file/directory (or all) from the staging area</li>
+                            <li><i>--soft</i> will merely undo any <i>git add</i> commands you have performed</li>
+                            <li><i>--hard</i> will undo <i>git add</i> AND discard all changes you've made</li>
+                        </ul>
+                    </small>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p>
+                <ul>
+                    <li>git branch <i>[--all/-a/-av]</i></li>
                     <small>
                         <ul>
                             <li>Lists out your branches</li>
-                            <li><i>-a/--all [remote]</i> will list local branches and those located at the given remote</li>
+                            <li><i>-a/--all</i> will list local branches and those located within your remotes</li>
+                            <li><i>-av</i> will do the same as -a but also gives the last commit message</li>
                         </ul>
                     </small>
-                    <li>git checkout <b><i>[branchname]</i></b> <i>[-b]</i></li>
+                    <li>git checkout <i>[-b]</i> <b><i>[branchname]</i></b></li>
                     <small>
                         <ul>
                             <li>Switches you to the branch of the given <b><i>branchname</i></b></li>
@@ -232,36 +264,74 @@
             </section>
             <section>
                 <p>
-                    <ul>
-                        <li>git remote <i>[-v/--verbose]</i></li>
-                        <small>
-                            <ul>
-                                <li>Lists out your remote names</li>
-                                <li><i>-v/--verbose</i> will list out remote names AND the associated URL</li>
-                            </ul>
-                        </small>
-                        <li>git remote add <b><i>[name] [url]</i></b></li>
-                        <small>
-                            <ul>
-                                <li>Adds a new remote with the given <b><i>name</i></b> pointing to the given <b><i>url</i></b></li>
-                            </ul>
-                        </small>
-                        <li>git remote remove <b><i>[name]</i></b></li>
-                        <small>
-                            <ul>
-                                <li>Deletes the remote with the given <b><i>name</i></b></li>
-                            </ul>
-                        </small>
-                        <li>git remote rename <b><i>[oldName] [newName]</i></b></li>
-                        <small>
-                            <ul>
-                                <li>Renames the remote with the given <b><i>oldName</i></b> to the given <b><i>newName</i></b></li>
-                            </ul>
-                        </small>
-                    </ul>
+                <ul>
+                    <li>git remote <i>[-v/--verbose]</i></li>
+                    <small>
+                        <ul>
+                            <li>Lists out your remote names</li>
+                            <li><i>-v/--verbose</i> will list out remote names AND the associated URL</li>
+                        </ul>
+                    </small>
+                    <li>git remote add <b><i>[name] [url]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Adds a new remote with the given <b><i>name</i></b> pointing to the given <b><i>url</i></b></li>
+                        </ul>
+                    </small>
+                    <li>git remote remove <b><i>[name]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Deletes the remote with the given <b><i>name</i></b></li>
+                        </ul>
+                    </small>
+                    <li>git remote rename <b><i>[oldName] [newName]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Renames the remote with the given <b><i>oldName</i></b> to the given <b><i>newName</i></b></li>
+                        </ul>
+                    </small>
+                </ul>
                 </p>
             </section>
+            <section>
+                <p>
+                <ul>
+                    <li>git pull <b><i>[remote] [branch]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Pulls the changes from the given <b><i>[remote]'s [branch]</i></b> and auto merges them into the HEAD</li>
+                        </ul>
+                    </small>
+                    <li>git merge <b><i>[branch]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>Attempts to auto-merge changes from the given <b><i>branch</i></b> into the current branch</li>
+                            <li>Any files that GIT fails to auto-merge will be marked and will need to be manually merged before being added and committed again</li>
+                            <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
+                        </ul>
+                    </small>
+                    <li>git rebase <b><i>[branch]</i></b></li>
+                    <small>
+                        <ul>
+                            <li>A different type of merge, this will rewrite the commit history of your branches</li>
+                            <li>The history rewrite will smooth out your branch history and make it more readable and clean</li>
+                            <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
+                            <li><b>DO NOT USE THIS ON PUBLIC BRANCHES!!!</b></li>
+                        </ul>
+                    </small>
+                    <li>git log <i>[-p] [file]</i></li>
+                    <small>
+                        <ul>
+                            <li>Will list the commits starting with the most recent</li>
+                            <li><i>-p file</i> will go over the history of a specific file line by line</li>
+                        </ul>
+                    </small>
+                </ul>
+                </p>
+            </section>
+
         </section>
+
 
         <!-- How to use GITHUB Intro -->
         <section>
@@ -278,21 +348,21 @@
             <section>
                 <h2>Creating an SSH Key</h2>
                 <p>
-                    <ul>
-                        <li>In terminal, you can use "ls -al ~/.ssh" to list out existing ssh key files.</li>
-                        <li>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</li>
-                        <small>
+                <ul>
+                    <li>In terminal, you can use "ls -al ~/.ssh" to list out existing ssh key files.</li>
+                    <li>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</li>
+                    <small>
+                        <ul>
+                            <li>It will prompt you for the location you want to save, the key at
+                                pressing enter will default to ~/.ssh</li>
+                            <li>It will then prompt for a passphrase. Hitting enter will default to none.</li>
                             <ul>
-                                <li>It will prompt you for the location you want to save, the key at
-                                    pressing enter will default to ~/.ssh</li>
-                                <li>It will then prompt for a passphrase. Hitting enter will default to none.</li>
-                                <ul>
-                                    <li>If you create a passphrase, you will be prompted when using the SSH key for the
-                                        passphrase.</li>
-                                </ul>
+                                <li>If you create a passphrase, you will be prompted when using the SSH key for the
+                                    passphrase.</li>
                             </ul>
-                        </small>
-                    </ul>
+                        </ul>
+                    </small>
+                </ul>
                 </p>
             </section>
             <section>
@@ -332,18 +402,15 @@
         <section>
             <h2>Sources</h2>
             <p>
-                <ul>
+            <ul>
                 <li><a href="http://git-scm.com/doc">git-scm.com</a></li>
                 <li><a href="https://help.github.com/articles/generating-ssh-keys/">github.com</a></li>
                 <li><a href="http://security.stackexchange.com/questions/5096/rsa-vs-dsa-for-ssh-authentication-keys">stackexchange.com</a></li>
-                </ul>
-            </p>
-            <h3>Helpful Sites</h3>
-            <p>
-                <ul>
-                    <li><a href="http://linux.about.com/library/cmd/blcmdl1_ssh-keygen.htm">linux.about.com</a></li>
-                    <li><a href="https://confluence.atlassian.com/display/STASH/Basic+Git+commands">confluence.atlassian.com</a></li>
-                </ul>
+                <li><a href="http://linux.about.com/library/cmd/blcmdl1_ssh-keygen.htm">linux.about.com</a></li>
+                <li><a href="https://confluence.atlassian.com/display/STASH/Basic+Git+commands">confluence.atlassian.com</a></li>
+                <li><a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf">training.github.com</a></li>
+                <li><a href="http://www.git-tower.com/blog/git-cheat-sheet/">git-tower.com</a></li>
+            </ul>
             </p>
         </section>
 
