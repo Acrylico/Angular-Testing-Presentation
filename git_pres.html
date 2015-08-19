@@ -66,6 +66,7 @@
             <ul>
                 <li>(Almost) Everything is local</li>
                 <li>Commits are snapshots (not differences)</li>
+                <li></li>
             </ul>
             </p>
         </section>
@@ -208,7 +209,7 @@
                             <li>Files marked in red have not been added while files marked green have</li>
                         </ul>
                     </small>
-                    <li>git add <i>[-A/--all/. OR file/directory]</i></li>
+                    <li>git add <b><i>[-A/--all/. OR file/directory]</i></b></li>
                     <small>
                         <ul>
                             <li>Stages the named file/directory (or all) for commit</li>
@@ -238,7 +239,7 @@
                     <li>git push <b><i>[remote] [branch]</i></b></li>
                     <small>
                         <ul>
-                            <li>Pushes your local repo up to the targeted <b><i>branch</i></b> belonging to the <b><i>remote</i></b></li>
+                            <li>Pushes your local repo HEAD up to the targeted <b><i>[remote]'s [branch]</i></b></li>
                         </ul>
                     </small>
                     <li>git reset <i>[--soft/--hard]</i><i>[paths]</i></li>
@@ -266,14 +267,14 @@
                     <li>git checkout <i>[-b]</i> <b><i>[branchname]</i></b></li>
                     <small>
                         <ul>
-                            <li>Switches you to the branch of the given <b><i>branchname</i></b></li>
-                            <li><i>-b</i> will create a new branch of <b><i>branchname</i></b> and switch you to it</li>
+                            <li>Switches you to the branch of the given <b><i>[branchname]</i></b></li>
+                            <li><i>-b</i> will create a new branch of <b><i>[branchname]</i></b> and switch you to it</li>
                         </ul>
                     </small>
                     <li>git branch <b><i>[branchname]</i></b> -d</li>
                     <small>
                         <ul>
-                            <li>Deletes the branch with the given <b><i>branchname</i></b></li>
+                            <li>Deletes the branch with the given <b><i>[branchname]</i></b></li>
                         </ul>
                     </small>
                 </ul>
@@ -292,19 +293,19 @@
                     <li>git remote add <b><i>[name] [url]</i></b></li>
                     <small>
                         <ul>
-                            <li>Adds a new remote with the given <b><i>name</i></b> pointing to the given <b><i>url</i></b></li>
+                            <li>Adds a new remote with the given <b><i>[name]</i></b> pointing to the given <b><i>[url]</i></b></li>
                         </ul>
                     </small>
                     <li>git remote remove <b><i>[name]</i></b></li>
                     <small>
                         <ul>
-                            <li>Deletes the remote with the given <b><i>name</i></b></li>
+                            <li>Deletes the remote with the given <b><i>[name]</i></b></li>
                         </ul>
                     </small>
                     <li>git remote rename <b><i>[oldName] [newName]</i></b></li>
                     <small>
                         <ul>
-                            <li>Renames the remote with the given <b><i>oldName</i></b> to the given <b><i>newName</i></b></li>
+                            <li>Renames the remote with the given <b><i>[oldName]</i></b> to the given <b><i>[newName]</i></b></li>
                         </ul>
                     </small>
                 </ul>
@@ -322,7 +323,7 @@
                     <li>git merge <b><i>[branch]</i></b></li>
                     <small>
                         <ul>
-                            <li>Attempts to auto-merge changes from the given <b><i>branch</i></b> into the current branch</li>
+                            <li>Attempts to auto-merge changes from the given <b><i>[branch]</i></b> into the current branch</li>
                             <li>Any files that GIT fails to auto-merge will be marked and will need to be manually merged before being added and committed again</li>
                             <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
                         </ul>
@@ -340,7 +341,7 @@
                     <small>
                         <ul>
                             <li>Will list the commits starting with the most recent</li>
-                            <li><i>-p file</i> will go over the history of a specific file line by line</li>
+                            <li><i>-p [file]</i> will go over the history of a specific file line by line</li>
                         </ul>
                     </small>
                 </ul>
@@ -463,10 +464,8 @@
                 <br>
                 <p>
                     A good question!<br>
-                    GIT is different from your typical VCS and takes some practice and getting used to.<br>
-                    It changes the way your team operates day to day, moving from periodic commits of many files to short,
-                    small and concentrated commits every day, hour, or even minutes apart. That in combination with how easily
-                    GIT handles branches, it can be overwhelming to get into.
+                    GIT projects tend to be set up and operate a little different from their CVS counterparts.<br>
+                    Here is a fairly typical example of how a GIT project would work.
                 </p>
             </section>
             <section>
@@ -478,7 +477,7 @@
                 <small>Image taken from <a href="http://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen's article</a></small>
             </section>
             <section>
-                <h3>Branches Explained</h3>
+                <h3>Main (Infinite) Branches</h3>
                 <p>
                     <ul>
                         <li>
@@ -491,17 +490,11 @@
                             <small>Your working branch, this is what you push your changes to the most. All code here
                             is available to the team and updated frequently with new features, bug fixes, etc.</small>
                         </li>
-                        <li>
-                            <b>feature</b>
-                            <small>Generally local branches that you use to section off work on particular items before merging
-                            back into <b>develop</b>
-                            These are common place and will usually be deleted once they've served their purpose.</small>
-                        </li>
                     </ul>
                 </p>
             </section>
             <section>
-                <h3>Branches Explained</h3>
+                <h3>Finite Lifetime Branches</h3>
                 <p>
                 <ul>
                     <li>
@@ -514,16 +507,23 @@
                         <small>For those times when someone discovers a show stopping bug in production (which would never happen
                         to you, of course!) hotfix branches can be created to solve the problem</small>
                     </li>
+                <li>
+                    <b>feature</b>
+                    <small>Generally local branches that you use to section off work on particular items before merging
+                        back into <b>develop</b>
+                        These are common place and will usually be deleted once they've served their purpose.</small>
+                </li>
                 </ul>
                 </p>
             </section>
             <section>
                 <h3>Pull Requests</h3>
                 <p>
-                    Instead of simply merging into your develop branch, you may want to review the team's code before it's committed.<br>
-                    This can be done in the form of pull requests!<br>
+                    Instead of simply merging into your team's "central" repo, you may want to have someone review your code before it's committed.
+                    This can be done in the form of pull requests!<br><br>
                     In their simplest form, a pull request is a notification to the maintainer(s) of a repository that you have
-                    changes you'd like to be reviewed and merged into said repo.
+                    changes you'd like to be reviewed and merged into said repo.<br><br>
+                    You can look up a fully detailed tutorial <a href="https://help.github.com/articles/using-pull-requests/">here!</a>
                 </p>
             </section>
         </section>
