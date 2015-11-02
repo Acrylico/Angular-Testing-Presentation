@@ -98,14 +98,6 @@
                 </p>
             </section>
             <section>
-                <h3>The "Areas" of GIT</h3>
-                <p>
-                    <a href="/image/git-areas.png">
-                        <img src="/image/git-areas.png" style="width:600px; height: 331px;"/>
-                    </a>
-                </p>
-            </section>
-            <section>
                 <h3>Git has 3 "Areas"</h3>
                 <p>
                 <dl>
@@ -312,32 +304,32 @@
             </section>
             <section>
                 <p>
-                <ul>
-                    <li>git merge <b><i>[branch]</i></b></li>
-                    <small>
-                        <ul>
-                            <li>Attempts to auto-merge changes from the given <b><i>[branch]</i></b> into the current branch</li>
-                            <li>Any files that GIT fails to auto-merge will be marked and will need to be manually merged before being added and committed again</li>
-                            <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
-                        </ul>
-                    </small>
-                    <li>git rebase <b><i>[branch]</i></b></li>
-                    <small>
-                        <ul>
-                            <li>A different type of merge, this will rewrite the commit history of your branches</li>
-                            <li>The history rewrite will smooth out your branch history and make it more readable and clean</li>
-                            <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
-                            <li><b>DO NOT USE THIS ON PUBLIC BRANCHES!!!</b></li>
-                        </ul>
-                    </small>
-                    <li>git log <i>[-p] [file]</i></li>
-                    <small>
-                        <ul>
-                            <li>Will list the commits starting with the most recent</li>
-                            <li><i>-p [file]</i> will go over the history of a specific file line by line</li>
-                        </ul>
-                    </small>
-                </ul>
+                    <ul>
+                        <li>git merge <b><i>[branch]</i></b></li>
+                        <small>
+                            <ul>
+                                <li>Attempts to auto-merge changes from the given <b><i>[branch]</i></b> into the current branch</li>
+                                <li>Any files that GIT fails to auto-merge will be marked and will need to be manually merged before being added and committed again</li>
+                                <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
+                            </ul>
+                        </small>
+                        <li>git rebase <b><i>[branch]</i></b></li>
+                        <small>
+                            <ul>
+                                <li>A different type of merge, this will rewrite the commit history of your branches</li>
+                                <li>The history rewrite will smooth out your branch history and make it more readable and clean</li>
+                                <li>Any merges done this way are entirely local only, no changes will be made to your remotes</li>
+                                <li><b>DO NOT USE THIS ON PUBLIC BRANCHES!!!</b></li>
+                            </ul>
+                        </small>
+                        <li>git log <i>[-p] [file]</i></li>
+                        <small>
+                            <ul>
+                                <li>Will list the commits starting with the most recent</li>
+                                <li><i>-p [file]</i> will go over the history of a specific file line by line</li>
+                            </ul>
+                        </small>
+                    </ul>
                 </p>
             </section>
         </section>
@@ -519,6 +511,155 @@
                     You can look up a fully detailed tutorial <a href="https://help.github.com/articles/using-pull-requests/">here!</a>
                 </p>
             </section>
+        </section>
+
+        <!-- Putting it all together -->
+        <section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <p>
+                    Now that you've seen an example, let's go through how a<br>
+                    typical day of development might work.<br><br>
+                    <small>
+                        A small note, this may be specific to where I work,<br>
+                        taylor it to meet your needs if your workflow is different.
+                    </small>
+                </p>
+            </section>
+            <section>
+                <h4>Step One</h4>
+                <p>
+                    First thing you should do in the morning is update your local workspace.<br>
+                    <ul>
+                        <li>
+                            <b>git remote update --prune</b>
+                        </li>
+                        <li>
+                            <b>git branch -av</b> - if your develop branch says "<i>[behind X]</i>" then you need to<br>
+                            update it to match HEAD
+                        </li>
+                        <li>
+                            <b>git checkout develop</b>
+                        </li>
+                        <li>
+                            <b>git pull origin develop</b>
+                        </li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h4>Step Two</h4>
+                <p>
+                    Once develop has been updated, you <i>should</i><br>
+                    (i.e. <b>are strongly encouraged to</b>)<br>
+                    update your working branches, if you have any.<br><br>
+                    <b>NOTE:</b> Do <i>NOT</i> update master or release branches until those show changes from origin.
+                    <ul>
+                        <li>
+                            <b>git checkout {branch}</b>
+                        </li>
+                        <li>
+                            <b>git rebase develop</b> - you <i>might</i> run into merge conflicts,<br>
+                            but these will be rare if you've been diligent about keeping your local workspace up to date.<br>
+                            More on this in the next section.
+                        </li>
+                        <li>
+                            Repeat this for any other working branches you currently<br>
+                            have to keep everything up to date with the HEAD.
+                        </li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h4>Step Three</h4>
+                <p>
+                    Work! Once everything is up to date as it should be, continue or start your work.<br>
+                    Assuming you've already started, simply<br>
+                    <b>git checkout {branch}</b> back to where you were and continue.<br>
+                    If, however, you're just starting something new, then:
+                    <ul>
+                        <li>
+                            <b>git checkout -b {branch}</b> - As discussed previously, this will simultaneously<br>
+                            create and switch you over to the newly created branch.
+                        </li>
+                        <li>
+                            Do your work now! Change files however you see fit.
+                        </li>
+                        <li>
+                            When you feel like your work has reached a good point and you're ready to 'save' it, you
+                            can commit it to your local repo.
+                        </li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h4>Step Four</h4>
+                <p>
+                    Save your work and commit it!
+                    <ul>
+                        <li>
+                            <b>git add .</b> or <b>git add --all</b> - These (there is a difference,
+                            but it's negligible most of the time) will stage your work for commit.
+                            IT HAS NOT been committed yet at this point.
+                        </li>
+                        <li>
+                            <b>git commit -m "{message here}"</b> - Replace the last bit with some short blurb about
+                            what changes you made. IT IS NOT up on github yet at this point.
+                        </li>
+                        <li>
+                            <b>git push {your remote} {branch}</b> - If you've reached a point where your work on the feature
+                            is complete (however you define the word), then push it to your repo on github.
+                            <ul>
+                                <li>
+                                    <i>{your remote}</i> - should point to your personal fork of the origin on github.
+                                </li>
+                                <li>
+                                    <i>{branch}</i> - the name of the branch you working on.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h4>Step Five</h4>
+                <p>
+                    Create a Pull Request! Once your feature is fully developed and ready to be integrated into the team's
+                    collective origin repo, go to your forked repo on github and
+                    click on either green button to initiate a pull request.<br>
+
+                    <img src="/image/github_smallbutton.png" style="width:47px; height: 37px;"/><br>
+                    OR<br>
+                    <img src="/image/github_largebutton.png" style="width:800px; height: 49px;"/>
+                    <ul>
+                        <li>
+                            Give your pull request a name and write a short blurb about what you did.<br>
+                        </li>
+                        <li>
+                            <b>DO NOT MERGE IT YOURSELF!!</b><br>
+                            The point of a pull request is <i>code review!</i> Once you have a pull request up, github (should)
+                            notify relevant members of your team to merge it, but don't be shy about notifying them yourself.
+                        </li>
+                    </ul>
+                </p>
+            </section>
+        </section>
+
+        <!-- GIT Merge and Rebase -->
+        <section>
+            <h3>Git Merge and Rebase</h3>
+            <p>
+                One of Git's most powerful features is branches. It comes without saying that you'll have to eventually
+                merge those branches and you have two options: <i>Merging</i> and <i>Rebasing</i>.<br>
+                While they do (esentially) the same thing, they have a vital difference.<br><br>
+
+                <b>Merge</b> will take all the changes on your current branch from where you initially split off and
+                commit them as a single commit object into the branch you're merging into.<br><br>
+
+                <b>Rebase</b> will take your current branch and rewind it to the point of branching then play all
+                of the changes from the rebased branch onto it before re-applying your own on top of those.
+            </p>
         </section>
 
         <!-- Sources -->
