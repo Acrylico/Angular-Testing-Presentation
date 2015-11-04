@@ -16,6 +16,7 @@
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="css/custom.css">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -36,39 +37,32 @@
 		<![endif]-->
 	</head>
 
-	<body>
-            <!--style="-->
-	<!--background-image: url(/image/chipBrain.jpg);-->
-	<!--background-repeat: no-repeat;-->
-    <!--background-attachment: fixed;-->
-    <!--background-position: center;-->
-    <!--background-size: cover;-->
-	<!--">-->
-
+	<body class="ai-pres">
 		<div class="reveal">
 			<div class="slides">
                 <!-- Intro -->
                 <section>
                     <h1>Artificial Intelligence</h1>
-                    <h5>No It's Not Skynet (Yet)</h5>
+                    <!--<h5>No It's Not Skynet (Yet)</h5>-->
                     <p>
                         Holden Profit <br/><small>( <a href="https://github.com/hprofit">https://github.com/hprofit</a> )</small>
                     </p>
                 </section>
 
                 <!-- What is AI? Funny -->
-                <section>
-                    <h2>What is A.I.?</h2>
-                    <p>
-                        <img src="/image/scott.png" />
-                        </br>
-                        It's what this guy does.
-                    </p>
-                </section>
+                <!--<section>-->
+                    <!--<h2>What is A.I.?</h2>-->
+                    <!--<p>-->
+                        <!--<img src="/image/scott.png" />-->
+                        <!--</br>-->
+                        <!--It's what this guy does.-->
+                    <!--</p>-->
+                <!--</section>-->
 
                 <!-- What is AI? -->
                 <section>
-                    <h2>What is A.I., Really?</h2>
+                    <h2>What is A.I.?</h2>
+                    <!--, Really?</h2>-->
                     <h3>"The intelligence exhibited by machines or software."</h3>
                     <p>
                         A.I. is used in pretty much everything software related.
@@ -80,10 +74,8 @@
 
                 <!-- Some Examples of Notable AI -->
                 <section>
-                    <h2>Famous A.I.</h2>
+                    <h2>A.I. in Your life</h2>
                     <p>
-                        There have been several notable A.I. throughout history:
-
                         <dl>
                             <dt>Deep Blue</dt>
                                 <dd><small>(Chess)</small></dd>
@@ -94,6 +86,10 @@
                             <dt>Google Brain</dt>
                                 <dd><small>(Deep Learning)</small></dd>
                                 <dd><small>- Used in Google's Speech Recognition and Photosearch</small></dd>
+                            <dt>Baxter</dt>
+                                <dd><small>(Deep Learning)</small></dd>
+                                <dd><small>- <a href="http://www.rethinkrobotics.com/">Rethink Robotics'</a>
+                                    leading product used as a supplement for factor workers</small></dd>
                         </dl>
                         </br></br>
                         <small>Watson can even be used in your app via it's <a href="https://developer.ibm.com/watson/">public API!</a></small>
@@ -102,9 +98,10 @@
 
                 <!-- Simpler Examples -->
                 <section>
-                    <h2>Smaller Projects</h2>
+                    <h2>Example Projects</h2>
                     <p>
-                        Some A.I. You can make at home!
+                        The following are some examples of AI you could make at home with little aside from your own
+                        knowledge and a computer:
 
                         <ul>
                             <li><a href="http://pmav.eu/stuff/javascript-game-of-life-v3.1.1/">Game of Life</a></li>
@@ -115,90 +112,117 @@
                     </p>
                 </section>
 
-                <!-- Pathfinding-->
+                <!-- Game of Life-->
                 <section>
                     <section>
-                        <h2>Game of Life</h2>
+                        <h2>Conway's Game of Life</h2>
+                        <p>
+                            A form of cellular automaton, it's less of a game and more of a living experiment!
+                            <br>
+                            Generally the game is played based off an initial input and from there the player sits
+                            back and watches how the cells act over time.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>How does it work?</h2>
                         <p>
                             Simple Rules to follow
 
-                        <ul>
-                            <li>Living cells with <2 living neighbors die</li>
-                            <li>Living cells with 2-3 living neighbors remain alive</li>
-                            <li>Living cells with >3 living neighbors die</li>
-                            <li>Dead cells with 2 living neighbors spawns</li>
-                        </ul>
-                        </p>
-                    </section>
-                    <section>
-                        <h2>The end result</h2>
-                        <img src="/image/lifeScreen.png" />
-                    </section>
-                    <section>
-                        <p>
-                            Game of Life can generate several different patterns and repeating states
-
                             <ul>
-                                <li>Boat</li>
-                                <li>Frog</li>
-                                <li>Glider</li>
-                                <li>Pulsars</li>
+                                <li>Living cells with < 2 living neighbors die as through from loneliness</li>
+                                <li>Living cells with 2 to 3 living neighbors remain alive</li>
+                                <li>Living cells with > 3 living neighbors die as through from over crowding</li>
+                                <li>Dead cells with 2 living neighbors spawns as through from reproduction</li>
                             </ul>
                         </p>
                     </section>
+                    <section>
+                        <h2>The end result</h2>
+                        <!--<img src="/image/lifeScreen.png" />-->
+                        <img src="/image/gameOfLife.png" style="height:500px;"/>
+                    </section>
+                    <section>
+                        <h1>Code Walkthrough</h1>
+                    </section>
                 </section>
 
-                <!-- Swarming -->
+                <!-- Flocking -->
                 <section>
                     <section>
-                        <h2>Swarming</h2>
+                        <h2>Flocking</h2>
                         <p>
-                            Swarms have a set of goals they try to reach
-
-                        <ul>
-                            <li>Staying close to neighbors</li>
-                            <li>Not getting *too* close to said neighbors</li>
-                            <li>Heading in the same direction as their neighbors</li>
-                            <li>Avoiding walls and obstacles</li>
-                            <li>Avoiding predators or enemies</li>
-                        </ul>
+                            Simulating nature through a set of mathematical rules, flocking AI demonstrates how
+                            a mass of entities would move about in the wild.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>How does it work?</h2>
+                        <p>
+                            Each entity in a flock has a set of goals it tries to reach
+                            <ul>
+                                <li>Stay close to neighbors</li>
+                                <li>Stay out of their neighbors' personal space</li>
+                                <li>Head in the same direction as their neighbors</li>
+                                <li>Avoid walls and obstacles</li>
+                                <li>Avoid predators or enemies</li>
+                            </ul>
                         </p>
                     </section>
                     <section>
                         <h2>The end result</h2>
-                        <img src="/image/swarmScreen.png" />
+                        <!--<img src="/image/swarmScreen.png" />-->
+                        <img src="/image/flocking.png"/>
+                    </section>
+                    <section>
+                        <h1>Code Walkthrough</h1>
                     </section>
                 </section>
 
-                <!-- Pathfinding-->
+                <!-- Pathfinding -->
                 <section>
                     <section>
-                        <h2>Pathfinding (A*)</h2>
+                        <h2>Pathfinding via A*</h2>
                         <p>
-                            Pathfinding using A* is a quick way to find the shortest route from point A to B.</br>
-                            It involves the use of a min-heap object and a hueristic to help steer the AI away from paths that are too long.
-
+                            Pathfinding using A* is a quick way to find the shortest route from point A to B along a
+                            series of interconnected nodes.
+                            <br><br>
+                            The process involves the use of a min-heap object and a heuristic to help
+                            steer the AI away from paths that are too long.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>How does it work?</h2>
+                        <p>
+                            A min-heap is a binary tree where the parent's value is less than both children.<br>
+                            Utilizing a min-heap, A* begins with a start and goal point in mind and a grid of
+                            connected nodes.
+                            <br><br>
+                            For the current node, it calculates distance between itself and the goal. If the result
+                            is within acceptable parameters, it is added as a viable node to consider later.
+                            <br><br>
+                            This process repeats until the algorithm finds the end node. From there, it reconstructs
+                            the path based off of the viable nodes stored from earlier.
                         </p>
                     </section>
                     <section>
                         <h2>The end result</h2>
-                        <img src="/image/aStarScreen.png" />
+                        <!--<img src="/image/aStarScreen.png" />-->
+                        <img src="/image/aStar.png" />
                     </section>
-                </section>
-
-                <!-- Demos -->
-                <section>
-                    <h2>Demos</h2>
-                    <p>
-
-                    </p>
+                    <section>
+                        <h1>Code Walkthrough</h1>
+                    </section>
                 </section>
 
                 <!-- Questions -->
                 <section>
                     <h2>Questions</h2>
                     <p>
-                        Holden Profit <br/><small>( <a href="https://github.com/hprofit">https://github.com/hprofit</a> )</small>
+                        Holden Profit
+                        <br>
+                        <small>
+                            ( <a href="https://github.com/hprofit">https://github.com/hprofit</a> )
+                        </small>
                     </p>
                 </section>
 			</div>
