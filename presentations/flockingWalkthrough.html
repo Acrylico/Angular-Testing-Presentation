@@ -44,7 +44,7 @@
     <div class="slides">
         <!-- Intro -->
         <section>
-            <h1>Swarms</h1>
+            <h1>Swarm Intelligence:</h1>
             <h2>Borrowing From Nature</h2>
             <p>
                 Holden Profit <br>
@@ -54,7 +54,22 @@
         <!-- What is it? -->
         <section>
             <section>
-                <h2>What is Swarm of Flocking Intelligence?</h2>
+                <h2>First, What is Artificial Intelligence?</h2>
+                <br>
+                <p>
+                    <em>"Artificial intelligence (AI) is the intelligence exhibited by machines or software."</em>
+                    <br>
+                    <br>
+                    Artificial intelligence is split into three types:
+                    <ul>
+                        <li>Weak AI - Focused on a particular task</li>
+                        <li>Strong AI - Human level intelligence</li>
+                        <li>Super AI - Beyond human levels of intelligence</li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h2>What is Swarm Intelligence?</h2>
                 <br>
 
                 <p>
@@ -63,6 +78,9 @@
                     <em>
                         "Swarm intelligence (SI) is the collective behavior of decentralized, self-organized systems, natural or artificial."
                     </em>
+                    <br>
+                    <br>
+                    Swarm Intelligence is a form of "Weak AI"
                 </p>
             </section>
             <section>
@@ -76,19 +94,44 @@
                 </p>
             </section>
             <section>
-                <h2>What is it used for?</h2>
-                <br>
+                <h2>Swarms in Nature</h2>
+                <a href="http://cir.institute/wp-content/uploads/2014/09/school_of_long_fish_1920x1200.jpg">
+                    <img src="http://cir.institute/wp-content/uploads/2014/09/school_of_long_fish_1920x1200.jpg"
+                            style="height: 400px;"/>
+                </a>
+            </section>
+            <section>
+                <h2>Swarms in Nature</h2>
+                <a href="http://blogs.scientificamerican.com/media/inline/blog/Image/Ant-swarm.jpg">
+                    <img src="http://blogs.scientificamerican.com/media/inline/blog/Image/Ant-swarm.jpg"
+                         style="height: 400px;"/>
+                </a>
+            </section>
+            <section>
+                <h2>Swarms in Nature</h2>
+                <a href="http://imgc.allpostersimages.com/images/P-473-488-90/61/6172/1XRG100Z/posters/john-carnemolla-flock-of-sheep-in-roadway.jpg">
+                    <img src="http://imgc.allpostersimages.com/images/P-473-488-90/61/6172/1XRG100Z/posters/john-carnemolla-flock-of-sheep-in-roadway.jpg"
+                         style="height: 400px;"/>
+                </a>
+            </section>
+        </section>
 
+        <!-- What is it used for? -->
+        <section>
+            <section>
+                <h2>What is Swarm Intelligence used for?</h2>
+                <br>
                 <p>
                     <ul>
                         <li>Data Mining</li>
-                        <li>Real Scenario Simulation</li>
+                        <li>Cellular Robot Systems</li>
+                        <li>Planetary Mapping</li>
                         <li>Visual Effects for Games and Movies</li>
                     </ul>
                 </p>
             </section>
             <section>
-                <h2>How would I apply it to my game then?</h2>
+                <h2>How could I apply it to my game then?</h2>
                 <br>
 
                 <p>
@@ -144,18 +187,18 @@
                 <p>
                     Before doing anything else, we first must define our entity with some basic properties:
                     <br>
-                    <img src="../image/flockEntityBase.png" />
+                    <ul>
+                        <li>position: where the entity is in the world</li>
+                        <li>velocity: the direction the entity is moving in</li>
+                        <li>speed: how quickly the entity moves (a scalar for velocity)</li>
+                    </ul>
                 </p>
             </section>
             <section>
                 <h2>The Flock Entity</h2>
                 <br>
                 <p>
-                    <ul>
-                        <li>position: where the entity is in the world</li>
-                        <li>velocity: the direction the entity is moving in</li>
-                        <li>speed: how quickly the entity moves (a scalar for velocity)</li>
-                    </ul>
+                    <img src="../image/flockEntityBase.png" />
                 </p>
             </section>
         </section>
@@ -330,20 +373,138 @@
                     <ul>
                         <li>If too close to a given wall</li>
                         <ul>
-                            <li>for peer in peers</li>
-                            <ul>
-                                <li>averageVelocity += peer.velocity</li>
-                            </ul>
-                            <li>normalize averageVelocity</li>
+                            <li>Add to the velocity a vector headed in the opposite direction</li>
                         </ul>
-                        <li>Add the result to this entity's velocity</li>
                     </ul>
                 </p>
             </section>
             <section>
                 <h3>Avoidance: Staying away from Threats and Obstacles</h3>
                 <br>
-                <img src="../image/flockAlignmentCalc.png" />
+                <img src="../image/flockAvoidWallCalc.png" />
+            </section>
+        </section>
+
+        <!-- Goal Seeking -->
+        <section>
+            <section>
+                <h2>Goal Seeking</h2>
+                <br>
+                <p>
+                    Goal seeking can be done one of two ways:
+                    <br>
+                    The entities know where the goal is from the start or
+                    The entities are blind to the goal's location and simply wander until it is found
+                </p>
+            </section>
+            <section>
+                <h3>Goal Seeking</h3>
+                <br>
+                <p>
+                    Goal seeking, regardless of how you choose to do it, works very much like cohesion.
+                    <br>
+                    Once the entity knows where the goal is:
+                    <ul>
+                        <li>Calculate distance between this entity and the goal and normalize it</li>
+                        <li>Add the result to this entity's velocity</li>
+                    </ul>
+                </p>
+            </section>
+        </section>
+
+        <!-- Putting it together -->
+        <section>
+            <section>
+                <h2>Putting it all together</h2>
+                <br>
+                <p>
+                    Normally all of the previously discussed factors would weigh in on the entity equally. <br>
+                    While this will indeed have the entity moving about, <br>
+                    it can be much more interesting to weigh the inputs!
+                </p>
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                Our updated entity will look something like this:
+                <br>
+                <img src="../image/flockEntityReal.png" />
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <p>
+                    For each factor:
+                    <ul>
+                        <li>Normalize the factor</li>
+                        <li>Multiply the factor by a weight</li>
+                        <li>Add the resulting factors together</li>
+                        <li>Add the sum to this entity's velocity</li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <img src="../image/flockBasicUpdate.png" />
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                But what if we come across a threat?
+                <br>
+                The update for our entity might look a little different then!
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <p>
+                    If there are no threats nearby:
+                    <ul>
+                        <li>Update as normal</li>
+                    </ul>
+                    If there are threats detected:
+                    <ul>
+                        <li>Forego the normal factors and focus solely on escape!</li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <img src="../image/flockPreyUpdate.png" />
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <p>
+                    So that is an example of how a "prey" sort of entity would act.
+                    <br>
+                    <br>
+                    What about a "predator?"
+                </p>
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <p>
+                    If there is prey nearby:
+                    <ul>
+                        <li>Try to get close to them!</li>
+                    </ul>
+                    <br>
+                    <br>
+                    No matter what:
+                    <ul>
+                        <li>Keep some distance between fellow predators</li>
+                        <li>Try to head in the same direction as your peers</li>
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <h3>Putting it all together</h3>
+                <br>
+                <img src="../image/flockPredatorUpdate.png" />
             </section>
         </section>
 
