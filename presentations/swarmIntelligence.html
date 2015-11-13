@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>
+            Swarm Intelligence: Borrowing From Nature
+        </title>
+
+        <meta name="description" content="Jasmine is a behavior-driven development framework for testing JavaScript code.">
+        <meta name="author" content="Holden Profit">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="../css/reveal.min.css">
+        <link rel="stylesheet" href="../css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../css/custom.css">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="../lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+            img {
+                height: 400px;
+                background: white !important;
+            }
+        </style>
+    </head>
+
+    <body class="ai-pres">
+        <div class="reveal">
+            <div class="slides">
+                <!-- Intro -->
+                <section>
+                    <h1>Swarm Intelligence:</h1>
+                    <h2>Borrowing From Nature</h2>
+                    <p>
+                        Holden Profit <br>
+                    </p>
+                </section>
+
+                <!-- Swarms in Nature -->
+                <section>
+                    <section>
+                        <h2>Swarms in Nature</h2>
+                        <a href="http://cir.institute/wp-content/uploads/2014/09/school_of_long_fish_1920x1200.jpg">
+                            <img src="http://cir.institute/wp-content/uploads/2014/09/school_of_long_fish_1920x1200.jpg" />
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Swarms in Nature</h2>
+                        <a href="http://blogs.scientificamerican.com/media/inline/blog/Image/Ant-swarm.jpg">
+                            <img src="http://blogs.scientificamerican.com/media/inline/blog/Image/Ant-swarm.jpg" />
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Swarms in Nature</h2>
+                        <a href="http://www.wired.com/wp-content/uploads/2014/05/AlainDelorme_Murmuration01.jpg">
+                            <img src="http://www.wired.com/wp-content/uploads/2014/05/AlainDelorme_Murmuration01.jpg" />
+                        </a>
+                    </section>
+                    <section>
+                        <h2>Swarms in Nature</h2>
+                        <a href="http://imgc.allpostersimages.com/images/P-473-488-90/61/6172/1XRG100Z/posters/john-carnemolla-flock-of-sheep-in-roadway.jpg">
+                            <img src="http://imgc.allpostersimages.com/images/P-473-488-90/61/6172/1XRG100Z/posters/john-carnemolla-flock-of-sheep-in-roadway.jpg" />
+                        </a>
+                    </section>
+                </section>
+
+                <!-- What is AI? -->
+                <!--<section>-->
+                    <!--<section>-->
+                        <!--<h2>Artificial Intelligence</h2>-->
+                        <!--<br>-->
+                        <!--<p>-->
+                            <!--<em>"Artificial intelligence (AI) is the intelligence exhibited by machines or software."</em>-->
+                            <!--<br>-->
+                            <!--<br>-->
+                            <!--Artificial intelligence is split into three types:-->
+                        <!--<ul>-->
+                            <!--<li>Weak AI - Focused on a particular task</li>-->
+                            <!--<li>Strong AI - Human level intelligence</li>-->
+                            <!--<li>Super AI - Beyond human levels of intelligence</li>-->
+                        <!--</ul>-->
+                        <!--</p>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<h2>"Weak AI" or "Narrow AI"</h2>-->
+                        <!--<br>-->
+                        <!--<p>-->
+                            <!--<a href="http://i.kinja-img.com/gawker-media/image/upload/xsav1zah28fzejmnanki.jpg">-->
+                                <!--<img src="http://i.kinja-img.com/gawker-media/image/upload/xsav1zah28fzejmnanki.jpg"/>-->
+                            <!--</a>-->
+                        <!--</p>-->
+                    <!--</section>-->
+                <!--</section>-->
+
+                <!-- What is it? -->
+                <section>
+                    <section>
+                        <h2>Swarm Intelligence</h2>
+                        <br>
+                        <p>
+                            According to Wikipedia:
+                            <br><br>
+                            <em>
+                                "Swarm intelligence (SI) is the collective behavior of decentralized, self-organized systems, natural or artificial."
+                            </em>
+                            <br>
+                            <br>
+                            Swarm Intelligence is a form of "Weak AI"
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Artificial Intelligence</h2>
+                        <br>
+                        <p>
+                            <em>"Artificial intelligence (AI) is the intelligence exhibited by machines or software."</em>
+                            <br>
+                            <br>
+                            Artificial intelligence is split into three types:
+                        <ul>
+                            <li>Weak AI - Focused on a particular task</li>
+                            <li>Strong AI - Human level intelligence</li>
+                            <li>Super AI - Beyond human levels of intelligence</li>
+                        </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>"Weak AI" or "Narrow AI"</h2>
+                        <br>
+                        <p>
+                            <a href="http://i.kinja-img.com/gawker-media/image/upload/xsav1zah28fzejmnanki.jpg">
+                                <img src="http://i.kinja-img.com/gawker-media/image/upload/xsav1zah28fzejmnanki.jpg"/>
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>"Strong AI" or "Full AI"</h2>
+                        <br>
+                        <p>
+                            <a href="https://s-media-cache-ak0.pinimg.com/736x/26/0d/87/260d87b601b92032d597ca9d713a20cc.jpg">
+                                <img src="https://s-media-cache-ak0.pinimg.com/736x/26/0d/87/260d87b601b92032d597ca9d713a20cc.jpg"/>
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>"Super AI"</h2>
+                        <br>
+                        <p>
+                            <a href="http://www.piercepioneer.com/wp-content/uploads/2015/03/robot.jpg">
+                                <img src="http://www.piercepioneer.com/wp-content/uploads/2015/03/robot.jpg" />
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>So, what exactly does that mean?</h2>
+                        <br>
+                        <p>
+                            In nature, it is a description for how herd animals, insects, and even humans behave in large groups.
+                            <br>
+                            In software, it is the emulation of that same behaviour in nature.
+                        </p>
+                    </section>
+                </section>
+
+                <!-- What is it used for? -->
+                <section>
+                    <section>
+                        <h2>What is Swarm Intelligence used for?</h2>
+                        <br>
+                        <p>
+                            <ul>
+                                <li>Data Mining</li>
+                                <li>Cellular Robot Systems</li>
+                                <li>Particle Swarm Optimization</li>
+                                <li>Visual Effects for Games and Movies</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Data Mining</h3>
+                        <br>
+                        <p>
+                            Swarms can be used to assist in data mining by emulating ants.<br>
+                            Each 'ant' will pick up and drop given data items governed my certain inputs.<br>
+                            The swarm of ants uses clustering techniques to solve combinatorial optimization problems.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Cellular Robot Systems</h3>
+                        <br>
+                        <p>
+                            <a href="http://www.scholarpedia.org/w/images/thumb/8/8a/RobotSwarm.jpg/800px-RobotSwarm.jpg" >
+                                <img src="http://www.scholarpedia.org/w/images/thumb/8/8a/RobotSwarm.jpg/800px-RobotSwarm.jpg" style="height:400px;"/>
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Particle Swarm Optimization (PSO)</h3>
+                        <br>
+                        <p>
+                            Swarms Intelligence in PSO helps to look for the best solution to a given problem<br>
+                            The position of a particle represents a solution to the problem<br>
+                            Particles move about within their space governed by system inputs to contuously find a better
+                            solution to the problem
+                        </p>
+
+                    </section>
+                    <section>
+                        <h2>Video Games and Movies</h2>
+                        <br>
+
+                        <p>
+                            Swarm intelligence in games and movies drives the visual effects of characters on screen.<br>
+                            It can also drive how you interact with the game.
+                        </p>
+                    </section>
+                    <section>
+                        <h1>How do I create my own Swarm Intelligence?</h1>
+                    </section>
+                </section>
+
+                <!-- Vector Math -->
+                <section>
+                    <section>
+                        <h1>Vectors</h1>
+                        <br>
+                        <p>
+                            Before you can make a swarm, you must first know how to utilize vectors!
+                            <br>
+                            Let's go over the basics of 2D Vector math before we begin.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Vectors - Addition</h2>
+                        <p>
+                            <a href="http://mathinsight.org/media/image/image/vector_a_plus_b.png" >
+                                <img src="http://mathinsight.org/media/image/image/vector_a_plus_b.png" />
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Vectors - Subtraction</h2>
+                        <p>
+                            <a href="http://mathinsight.org/media/image/image/vector_b_minus_a.png" >
+                                <img src="http://mathinsight.org/media/image/image/vector_b_minus_a.png" />
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Vectors - Multiplication and Division</h2>
+                        <p>
+                            <a href="https://yjresources.files.wordpress.com/2010/10/picture2b.png?w=1024" >
+                                <img src="https://yjresources.files.wordpress.com/2010/10/picture2b.png?w=1024" />
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Vectors - Magnitude (Length)</h2>
+                        <p>
+                            <a href="http://ptgmedia.pearsoncmg.com/images/chap1_9780132761611/elementLinks/01_24_vector-magnitude.jpg" >
+                                <img src="http://ptgmedia.pearsoncmg.com/images/chap1_9780132761611/elementLinks/01_24_vector-magnitude.jpg" />
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Vectors - Normalize</h2>
+                        <p>
+                            <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Vector_normalization.svg/220px-Vector_normalization.svg.png" >
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Vector_normalization.svg/220px-Vector_normalization.svg.png" />
+                            </a>
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Flock Entity -->
+                <section>
+                    <section>
+                        <h2>The Flock (Swarm) Entity</h2>
+                        <br>
+                        <p>
+                            For the purposes of this talk, I refer to my swarm objects as 'flock entities'.
+                            <br>
+                            Before doing anything else, we first define our entity with some basic properties
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Position</h2>
+                        <h4>Vector representing where the entity is in the world</h4>
+                        <p>
+                            <img src="../image/swarm/flockPosition.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Velocity</h2>
+                        <h4>Vector representing the direction the entity is moving in</h4>
+                        <p>
+                            <img src="../image/swarm/flockVelocity.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Speed</h2>
+                        <h4>Number denoting how quickly the entity moves (a scalar for Velocity)</h4>
+                        <p>
+                            <img src="../image/swarm/flockSpeed.gif" />
+                        </p>
+                    </section>
+                    <section>
+                        <h2>The Flock (Swarm) Entity</h2>
+                        <br>
+                        <p>
+                            <img src="../image/swarm/flockEntityBase.png" style="width: 100%;" />
+                        </p>
+                    </section>
+                </section>
+
+                <!-- The Basics of Swarm Intelligence -->
+                <section>
+                    <section>
+                        <h2>Getting started with Swarm Intelligence</h2>
+                        <br>
+                        <p>
+                            The basics of Swarm Intelligence lie in several key factors:
+                            <br>
+                            <br>
+                            <ul>
+                                <li>Cohesion</li>
+                                <li>Separation</li>
+                                <li>Alignment</li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Cohesion -->
+                <section>
+                    <section>
+                        <h1>Cohesion: The Attraction Force!</h1>
+                    </section>
+                    <section>
+                        <p>
+                            Cohesion is the force that draws the entities of a swarm together.
+                            <br>
+                            <br>
+                            How does it work?
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <img src="https://www.evl.uic.edu/aej/527/pics/flock3.jpg" />
+                            <br>
+                            <small><a href="https://www.evl.uic.edu/aej/527/lecture08.html">Image Source</a></small>
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Take the position of all nearby entities
+                            <br>
+                            <img src="../image/swarm/cohesion/cohesionTakePos.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Add the positions of the nearby entities together
+                            <br>
+                            <img src="../image/swarm/cohesion/cohesionAdd.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <img src="../image/swarm/cohesion/cohesionTotal.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Divide the total by the number of nearby entities
+                            <img src="../image/swarm/cohesion/cohesionDiv.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Subtract the result from the current entity's position
+                            <img src="../image/swarm/cohesion/cohesionSteerForce.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Cohesion: The Attraction Force!</h3>
+                        <br>
+                        <img src="../image/swarm/flockCohesionCalc.png" style="height: 500px;" />
+                    </section>
+                </section>
+
+                <!-- Separation -->
+                <section>
+                    <section>
+                        <h1>Separation: The Personal Space Force!</h1>
+                    </section>
+                    <section>
+                        <p>
+                            Separation is the force that pushes entities apart enough to have some personal space
+                            <br>
+                            <br>
+                            <small>Because who wants their neighbor to be right next to them?</small>
+                            <br>
+                            How does it work?
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Separation: Maintain some Distance</h3>
+                        <br>
+                        <p>
+                            <img src="https://www.evl.uic.edu/aej/527/pics/flock1.jpg" style="height:400px;"/>
+                            <br>
+                            <small><a href="https://www.evl.uic.edu/aej/527/lecture08.html">Image Source</a></small>
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            For a given neighbor, subtract the neighbor's position from this entity's position and reverse it
+                            <br>
+                            <img src="../image/swarm/separation/separationSubOne.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Repeat this process for each neighbor, keeping the resulting vectors
+                            <br>
+                            <img src="../image/swarm/separation/separationSubAll.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Normalize each of the resulting vectors
+                            <br>
+                            <img src="../image/swarm/separation/separationNormalizeEach.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Add the resulting vectors together
+                            <br>
+                            <img src="../image/swarm/separation/separationAddAll.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Normalize the total for the separation force
+                            <br>
+                            <img src="../image/swarm/separation/separationNormalizeResult.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Separation:  The Personal Space Force!</h3>
+                        <br>
+                        <img src="../image/swarm/flockSeparationCalc.png" />
+                    </section>
+                </section>
+
+                <!-- Alignment -->
+                <section>
+                    <section>
+                        <h1>Alignment: Going Forward Together!</h1>
+                    </section>
+                    <section>
+                        <p>
+                            Alignment is the force that draws each entity toward the same general direction as it's peers
+                            <br>
+                            <br>
+                            How does it work?
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Alignment: Going Forward Together</h3>
+                        <br>
+                        <p>
+                            <img src="https://www.evl.uic.edu/aej/527/pics/flock2.jpg" style="height:400px;"/>
+                            <br>
+                            <small><a href="https://www.evl.uic.edu/aej/527/lecture08.html">Image Source</a></small>
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            For a given neighbor, store it's velocity
+                            <br>
+                            <img src="../image/swarm/alignment/alignmentAddOne.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Repeat this for each neighbor
+                            <br>
+                            <img src="../image/swarm/alignment/alignmentAddAll.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Add the stored velocities together
+                            <br>
+                            <img src="../image/swarm/alignment/alignmentAddResults.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Normalize the result
+                            <br>
+                            <img src="../image/swarm/alignment/alignmentNormaizeResult.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Alignment: Going Forward Together!</h3>
+                        <br>
+                        <img src="../image/swarm/flockAlignmentCalc.png" />
+                    </section>
+                </section>
+
+                <!-- Optional Factors -->
+                <section>
+                    <section>
+                        <h2>Optional Factors</h2>
+                        <br>
+                        <p>
+                            Beyond simple interaction with swarm mates, the entities can be influenced by
+                            external factors and physical limitations.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Goal Seeking</h2>
+                        <p>
+                            <a href="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" >
+                                <img src="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" />
+                            </a>
+                            <br>
+                            How does an entity react to possible goals?
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Field of Vision -->
+                <section>
+                    <section>
+                        <h1>Field of Vision</h1>
+                    </section>
+                    <section>
+                        <p>
+                            <a href="https://cms-assets.tutsplus.com/uploads/users/108/posts/22100/image/what-is-perspective-field-of-vision-1.png" >
+                                <img src="https://cms-assets.tutsplus.com/uploads/users/108/posts/22100/image/what-is-perspective-field-of-vision-1.png" />
+                            </a>
+                            <br>
+                            What does each entity see?
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            For simplicities sake, we're going to use a simple diameter test.
+                            <br>
+                            First, establish a range.
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_basic.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            For a given entity, find the distance vector between it and this entity.
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_findOne.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Test the length of the distance vector against our range
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_testLength.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            For the next entity, again find the distance vector between it and this entity.
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_findOne_OOR.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Test the length again, this one is outside our field of view!
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_testLength_OOR.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Eventually, we find all of the neighbors within our field of view!
+                            <br>
+                            <img src="../image/swarm/fov/flock_fov_findAll.png" />
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Avoiding Threats -->
+                <section>
+                    <section>
+                        <h1>Threats</h1>
+                    </section>
+                    <section>
+                        <p>
+                            <a href="https://upload.wikimedia.org/wikipedia/en/9/9c/Ralph_Wolf_carrying_sheep.png" >
+                                <img src="https://upload.wikimedia.org/wikipedia/en/9/9c/Ralph_Wolf_carrying_sheep.png" />
+                            </a>
+                            <br>
+                            How does an entity respond to threats?
+                            <br>
+                            Assuming that the threat is deadly, the entity should steer away from it at all costs!
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Using the field of vision technique previously discussed, we first establish the entity's
+                            field of vision (which typically doesn't change)
+                            <br>
+                            <img src="../image/swarm/threat/flock_threat_fov.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Find all potential threats within the entity's sight
+                            <br>
+                            <img src="../image/swarm/threat/flock_threat_foundThreats.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Calculate a vector leading the entity away from each individual threat
+                            <br>
+                            (Think back to Separation!)
+                            <br>
+                            <img src="../image/swarm/threat/flock_threat_escapeVectors.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Add the escape vectors together...
+                            <br>
+                            <img src="../image/swarm/threat/flock_threat_escapeVectorsAdd.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            ...and we have our total escape vector!
+                            <br>
+                            (Don't forget to normalize the result!)
+                            <br>
+                            <img src="../image/swarm/threat/flock_threat_escapeForce.png" />
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Goal Seeking -->
+                <section>
+                    <section>
+                        <h2>Goal Seeking</h2>
+                        <br>
+                        <p>
+                            Goal seeking can be done one of two ways:
+                            <br>
+                            The entities know where the goal is from the start or
+                            The entities are blind to the goal's location and simply wander until it is found
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Goal Seeking</h3>
+                        <br>
+                        <p>
+                            Goal seeking, regardless of how you choose to do it, works very much like cohesion.
+                            <br>
+                            Once the entity knows where the goal is:
+                            <ul>
+                                <li>Calculate distance between this entity and the goal and normalize it</li>
+                                <li>Add the result to this entity's velocity</li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+
+                <!-- Putting it together -->
+                <section>
+                    <section>
+                        <h2>Putting it all together</h2>
+                        <br>
+                        <p>
+                            Normally all of the previously discussed factors would weigh in on the entity equally. <br>
+                            While this will indeed have the entity moving about, <br>
+                            it can be much more interesting to weigh the inputs!
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        Our updated entity will look something like this:
+                        <br>
+                        <img src="../image/swarm/flockEntityReal.png" />
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <p>
+                            For each factor:
+                            <ul>
+                                <li>Normalize the factor</li>
+                                <li>Multiply the factor by a weight</li>
+                                <li>Add the resulting factors together</li>
+                                <li>Add the sum to this entity's velocity</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <img src="../image/swarm/flockBasicUpdate.png" />
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        But what if we come across a threat?
+                        <br>
+                        The update for our entity might look a little different then!
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <p>
+                            If there are no threats nearby:
+                            <ul>
+                                <li>Update as normal</li>
+                            </ul>
+                            If there are threats detected:
+                            <ul>
+                                <li>Forego the normal factors and focus solely on escape!</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <img src="../image/swarm/flockPreyUpdate.png" />
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <p>
+                            So that is an example of how a "prey" sort of entity would act.
+                            <br>
+                            <br>
+                            What about a "predator?"
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <p>
+                            If there is prey nearby:
+                            <ul>
+                                <li>Try to get close to them!</li>
+                            </ul>
+                            <br>
+                            <br>
+                            No matter what:
+                            <ul>
+                                <li>Keep some distance between fellow predators</li>
+                                <li>Try to head in the same direction as your peers</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Putting it all together</h3>
+                        <br>
+                        <img src="../image/swarm/flockPredatorUpdate.png" />
+                    </section>
+                </section>
+
+                <!-- Questions -->
+                <section>
+                    <h2>Questions</h2>
+                    <p>
+                        <a href="https://www.linkedin.com/pub/holden-profit/42/634/a23">Holden Profit</a>
+                        <br>
+                        <a href="mailto:holdenprofit@gmail.com?Subject=Reaching%20Out">holdenprofit@gmail.com</a>
+                        <br>
+                        <a href="https://github.com/hprofit">GitHub</a>
+                    </p>
+                </section>
+
+                <!-- Sources -->
+                <section>
+                    <h2>Sources</h2>
+                    <p>
+                    <ul>
+                        <li><a href="http://www.scholarpedia.org/article/Swarm_intelligence">http://www.scholarpedia.org</a></li>
+                        <li><a href="https://www.evl.uic.edu/aej/527/lecture08.html">https://www.evl.uic.edu</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Boids"></a>https://en.wikipedia.org/wiki/Boids</li>
+                        <li><a href="https://en.wikipedia.org/wiki/Swarm_intelligence#Applications"></a>https://en.wikipedia.org/wiki/Swarm_intelligence</li>
+                        <li><a href="http://mathinsight.org/vector_introduction"></a>http://mathinsight.org/vector_introduction</li>
+                    </ul>
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <script src="../lib/js/head.min.js"></script>
+        <script src="../js/reveal.min.js"></script>
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                parallaxBackgroundImage: '../image/chipBrain.jpg',
+                parallaxBackgroundSize: '2500px 2380px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
