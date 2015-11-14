@@ -542,16 +542,6 @@
                             external factors and physical limitations.
                         </p>
                     </section>
-                    <section>
-                        <h2>Goal Seeking</h2>
-                        <p>
-                            <a href="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" >
-                                <img src="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" />
-                            </a>
-                            <br>
-                            How does an entity react to possible goals?
-                        </p>
-                    </section>
                 </section>
 
                 <!-- Field of Vision -->
@@ -675,26 +665,51 @@
                 <!-- Goal Seeking -->
                 <section>
                     <section>
+                        <h1>Goal Seeking</h1>
+                    </section>
+                    <section>
+                        <p>
+                            <a href="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" >
+                                <img src="http://i.ytimg.com/vi/kXfqWzvnR3A/maxresdefault.jpg" />
+                            </a>
+                            <br>
+                            How does an entity react or search out goals?
+                        </p>
+                    </section>
+                    <section>
                         <h2>Goal Seeking</h2>
                         <br>
                         <p>
                             Goal seeking can be done one of two ways:
                             <br>
-                            The entities know where the goal is from the start or
-                            The entities are blind to the goal's location and simply wander until it is found
+                            <br>
+                            The entities know where the goal is from the start?
+                            <br>
+                            Do they wander around until they find it?
                         </p>
                     </section>
                     <section>
-                        <h3>Goal Seeking</h3>
-                        <br>
                         <p>
-                            Goal seeking, regardless of how you choose to do it, works very much like cohesion.
+                            First, detect any nearby goals (if the entity doesn't inherently know about them)
                             <br>
-                            Once the entity knows where the goal is:
-                            <ul>
-                                <li>Calculate distance between this entity and the goal and normalize it</li>
-                                <li>Add the result to this entity's velocity</li>
-                            </ul>
+                            <img src="../image/swarm/goal/flock_goalFind.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Then, head towards that goal!
+                            <br>
+                            (Think back to cohesion!)
+                            <br>
+                            <img src="../image/swarm/goal/flock_goalGoTowards.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Goal seeking can be reused for other things, such as following a trail of
+                            bread crumbs or a scent left behind by peers!
+                            <br>
+                            <img src="../image/swarm/goal/flock_trail.png" />
                         </p>
                     </section>
                 </section>
@@ -702,97 +717,80 @@
                 <!-- Putting it together -->
                 <section>
                     <section>
-                        <h2>Putting it all together</h2>
-                        <br>
+                        <h1>Putting it All Together!</h1>
+                    </section>
+                    <section>
                         <p>
-                            Normally all of the previously discussed factors would weigh in on the entity equally. <br>
-                            While this will indeed have the entity moving about, <br>
-                            it can be much more interesting to weigh the inputs!
+                            Normally all of the previously discussed factors would influence the entity equally.
+                            <br>
+                            <br>
+                            While this will move the entity just fine, more interesting behavior comes from
+                            changing the amount of influence a given factor has over the entity.
                         </p>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
+                        Our updated entity with weights will look something like this:
                         <br>
-                        Our updated entity will look something like this:
-                        <br>
-                        <img src="../image/swarm/flockEntityReal.png" />
+                        <a href="../image/swarm/flockEntityReal.png">
+                            <img src="../image/swarm/flockEntityReal.png" />
+                        </a>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
                         <p>
-                            For each factor:
-                            <ul>
-                                <li>Normalize the factor</li>
-                                <li>Multiply the factor by a weight</li>
-                                <li>Add the resulting factors together</li>
-                                <li>Add the sum to this entity's velocity</li>
-                            </ul>
+                            As we've already taken care to normalize the factors,<br>
+                            we simply multiply each factor by it's corresponding weight!
+                            <br>
+                            <br>
+                            Once we're finished, we add the new, weighted factors together.
                         </p>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
+                        An example update function:
                         <img src="../image/swarm/flockBasicUpdate.png" />
                     </section>
+                </section>
+
+                <!-- Predator -->
+                <section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
-                        But what if we come across a threat?
-                        <br>
-                        The update for our entity might look a little different then!
+                        <h1>Predators</h1>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
                         <p>
-                            If there are no threats nearby:
-                            <ul>
-                                <li>Update as normal</li>
-                            </ul>
-                            If there are threats detected:
-                            <ul>
-                                <li>Forego the normal factors and focus solely on escape!</li>
-                            </ul>
+                            How might a predator act compared to a general swarm entity?
+                            <br>
+                            <br>
+                            Alignment and separation work just as normal for a predator in this example.<br>
+                            However, for cohesion, a predator should seek out it's prey!
                         </p>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
-                        <img src="../image/swarm/flockPreyUpdate.png" />
-                    </section>
-                    <section>
-                        <h3>Putting it all together</h3>
-                        <br>
                         <p>
-                            So that is an example of how a "prey" sort of entity would act.
+                            Find all nearby prey!
                             <br>
-                            <br>
-                            What about a "predator?"
+                            <img src="../image/swarm/predator/predator_cohesion.png" />
                         </p>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
                         <p>
-                            If there is prey nearby:
-                            <ul>
-                                <li>Try to get close to them!</li>
-                            </ul>
+                            Just like cohesion for peers, calculate the center.
                             <br>
-                            <br>
-                            No matter what:
-                            <ul>
-                                <li>Keep some distance between fellow predators</li>
-                                <li>Try to head in the same direction as your peers</li>
-                            </ul>
+                            <img src="../image/swarm/predator/predator_cohesionCenter.png" />
                         </p>
                     </section>
                     <section>
-                        <h3>Putting it all together</h3>
-                        <br>
-                        <img src="../image/swarm/flockPredatorUpdate.png" />
+                        <p>
+                            Normalize the result and use that as the cohesion force!
+                            <br>
+                            <img src="../image/swarm/predator/predator_cohesionCenterNorm.png" />
+                        </p>
                     </section>
+                </section>
+
+                <section>
+                    <h1>
+                        <a href="http://localhost:89/#/flock">Demo!</a>
+                    </h1>
                 </section>
 
                 <!-- Questions -->
@@ -814,9 +812,9 @@
                     <ul>
                         <li><a href="http://www.scholarpedia.org/article/Swarm_intelligence">http://www.scholarpedia.org</a></li>
                         <li><a href="https://www.evl.uic.edu/aej/527/lecture08.html">https://www.evl.uic.edu</a></li>
-                        <li><a href="https://en.wikipedia.org/wiki/Boids"></a>https://en.wikipedia.org/wiki/Boids</li>
-                        <li><a href="https://en.wikipedia.org/wiki/Swarm_intelligence#Applications"></a>https://en.wikipedia.org/wiki/Swarm_intelligence</li>
-                        <li><a href="http://mathinsight.org/vector_introduction"></a>http://mathinsight.org/vector_introduction</li>
+                        <li><a href="https://en.wikipedia.org/wiki/Boids">https://en.wikipedia.org/wiki/Boids</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Swarm_intelligence#Applications">https://en.wikipedia.org/wiki/Swarm_intelligence</a></li>
+                        <li><a href="http://mathinsight.org/vector_introduction">http://mathinsight.org/vector_introduction</a></li>
                     </ul>
                     </p>
                 </section>
